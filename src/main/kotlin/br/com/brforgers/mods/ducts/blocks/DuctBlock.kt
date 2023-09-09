@@ -20,15 +20,14 @@ import net.minecraft.world.level.block.entity.BlockEntityType
 import net.minecraft.world.level.block.state.BlockState
 import net.minecraft.world.level.block.state.StateDefinition
 import net.minecraft.world.level.block.state.properties.BlockStateProperties
-import net.minecraft.world.level.material.Material
-import net.minecraft.world.level.material.MaterialColor
+import net.minecraft.world.level.material.MapColor
 import net.minecraft.world.phys.BlockHitResult
 import net.minecraft.world.phys.shapes.CollisionContext
 import net.minecraft.world.phys.shapes.VoxelShape
 import net.minecraftforge.network.NetworkHooks
 
 
-class DuctBlock : BaseEntityBlock(Properties.of(Material.METAL, MaterialColor.COLOR_GRAY).strength(1.0F, 6.0F).sound(SoundType.METAL).noOcclusion()) {
+class DuctBlock : BaseEntityBlock(Properties.of().strength(1.0F, 6.0F).sound(SoundType.METAL).mapColor(MapColor.METAL).noOcclusion()) {
     private val shapeCache = hashMapOf<BlockState, VoxelShape>()
 
     init {

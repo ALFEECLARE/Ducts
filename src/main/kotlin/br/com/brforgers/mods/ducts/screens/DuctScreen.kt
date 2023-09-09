@@ -6,6 +6,7 @@ import br.com.brforgers.mods.ducts.inventories.DuctInventory
 import com.mojang.blaze3d.systems.RenderSystem
 import com.mojang.blaze3d.vertex.PoseStack
 import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen
+import net.minecraft.client.gui.GuiGraphics
 import net.minecraft.client.renderer.GameRenderer
 import net.minecraft.network.chat.Component
 import net.minecraft.resources.ResourceLocation
@@ -20,20 +21,20 @@ class DuctScreen(screenContainer: DuctInventory, inv: Inventory, title: Componen
     AbstractContainerScreen<DuctInventory>(screenContainer, inv, title) {
     private val duct: DuctBlockEntity
 
-    override fun render(@Nonnull matrixStack: PoseStack, mouseX: Int, mouseY: Int, partialTicks: Float) {
-        this.renderBackground(matrixStack)
-        super.render(matrixStack, mouseX, mouseY, partialTicks)
-        this.renderTooltip(matrixStack, mouseX, mouseY)
+    override fun render(@Nonnull guigraphic: GuiGraphics, mouseX: Int, mouseY: Int, partialTicks: Float) {
+        this.renderBackground(guigraphic)
+        super.render(guigraphic, mouseX, mouseY, partialTicks)
+        this.renderTooltip(guigraphic, mouseX, mouseY)
     }
 
-    override fun renderBg(@Nonnull matrixStack: PoseStack, partialTicks: Float, x: Int, y: Int) {
+    override fun renderBg(@Nonnull guigraphic: GuiGraphics, partialTicks: Float, x: Int, y: Int) {
         if (minecraft != null) {
             RenderSystem.setShader { GameRenderer.getPositionTexShader() }
             RenderSystem.setShaderColor(1.0f, 1.0f, 1.0f, 1.0f)
             RenderSystem.setShaderTexture(0, HOPPER_GUI_TEXTURE)
             val i = (width - imageWidth) / 2
             val j = (height - imageHeight) / 2
-            blit(matrixStack, i, j, 0, 0, imageWidth, imageHeight)
+            guigraphic.blit(HOPPER_GUI_TEXTURE, i, j, 0, 0, imageWidth, imageHeight)
         }
     }
 
@@ -44,7 +45,6 @@ class DuctScreen(screenContainer: DuctInventory, inv: Inventory, title: Componen
 
     init {
         duct = screenContainer.duct
-        passEvents = false
         imageHeight = 133
         inventoryLabelY = imageHeight - 94
     }

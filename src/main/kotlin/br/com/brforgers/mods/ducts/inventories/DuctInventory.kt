@@ -33,7 +33,7 @@ class DuctInventory(syncId: Int, playerInventory: Inventory, inventory: DuctBloc
     constructor(id: Int, playerInventory: Inventory, pos: BlockPos?) : this(
         id,
         playerInventory,
-        playerInventory.player.level.getBlockEntity(pos!!) as DuctBlockEntity
+        playerInventory.player.level().getBlockEntity(pos!!) as DuctBlockEntity
     )
 
     override fun stillValid(@Nonnull player: Player): Boolean {

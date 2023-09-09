@@ -14,7 +14,7 @@ import net.minecraft.world.item.Item
 import net.minecraftforge.common.extensions.IForgeMenuType
 import net.minecraftforge.fml.common.Mod
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent
-import net.minecraftforge.event.CreativeModeTabEvent
+import net.minecraftforge.event.BuildCreativeModeTabContentsEvent
 import net.minecraftforge.registries.DeferredRegister
 import net.minecraftforge.registries.ForgeRegistries
 import org.apache.logging.log4j.Level
@@ -72,8 +72,8 @@ object  Ducts {
         MenuScreens.register(DUCT_MENU, ::DuctScreen)
     }
 
-	public fun onCreativeModeTabBuildContents(event: CreativeModeTabEvent.BuildContents) {
-	  if (event.getTab() == CreativeModeTabs.REDSTONE_BLOCKS) {
+	public fun onCreativeModeTabBuildContents(event: BuildCreativeModeTabContentsEvent) {
+	  if (event.getTabKey() == CreativeModeTabs.REDSTONE_BLOCKS) {
 	    event.accept(DUCT_BLOCK);
 	  }
 	}
